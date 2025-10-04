@@ -1,103 +1,173 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import Timer from "@/components/Timer";
+import TariffCard from "@/components/TariffCard";
+
+type Tariff = {
+  id: string;
+  period: string;
+  price: number;
+  full_price: number;
+  text?: string;
+  is_best?: boolean;
+};
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [tariffs, setTariffs] = useState<Tariff[]>([]);
+  const [expired, setExpired] = useState(false);
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
+  const [shakePolicy, setShakePolicy] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    async function fetchTariffs() {
+      try {
+        const res = await fetch("https://t-core.fit-hub.pro/Test/GetTariffs");
+        const data = await res.json();
+        setTariffs(data);
+      } catch (err) {
+        console.error("Ошибка загрузки тарифов:", err);
+      }
+    }
+    fetchTariffs();
+  }, []);
+
+  const accent = tariffs.find((t) => t.period === "Навсегда");
+  const others = tariffs.filter((t) => t.period !== "Навсегда").reverse();
+
+  useEffect(() => {
+    if (accent) setSelectedPlan(-1);
+  }, [accent]);
+
+  const handleBuyClick = () => {
+    if (!agreedToPolicy) {
+      setShakePolicy(true);
+      setTimeout(() => setShakePolicy(false), 500);
+      return;
+    }
+  };
+
+  return (
+    <main className="flex flex-col min-h-screen font-[Montserrat]">
+      <Timer onTimeEnd={() => setExpired(true)} />
+      <div className="mx-auto pt-[50px] pb-[150px]">
+        <h1 className="text-[40px] font-bold leading-[110%] text-white mb-[110px]">
+          Выбери подходящий для себя{" "}
+          <span className="[color:var(--accent)]">тариф</span>
+        </h1>
+
+        <div className="flex flex-row gap-[82px] items-center justify-between max-w-[1216px]">
+          {/* Person */}
+          <div>
+            <Image src="/person.png" alt="man" width={380} height={767} />
+          </div>
+
+          <div className="flex flex-col max-w-[748px]">
+            {/* Tariffs */}
+            <div className="flex flex-col gap-[14px]">
+              {/* Accent card */}
+              {accent && (
+                <TariffCard
+                  key="accent"
+                  {...accent}
+                  size="large"
+                  is_best={true}
+                  expired={expired}
+                  selected={selectedPlan === -1}
+                  onSelect={() => setSelectedPlan(-1)}
+                />
+              )}
+
+              {/* Other cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-[14px]">
+                {others.map((tariff, index) => (
+                  <TariffCard
+                    key={index}
+                    {...tariff}
+                    size="normal"
+                    expired={expired}
+                    selected={selectedPlan === index}
+                    onSelect={() => setSelectedPlan(index)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Attention */}
+            <div className="bg-[#2D3233] rounded-[20px] px-5 py-[18px] flex items-start gap-2 max-w-[499px] mt-5">
+              <Image
+                src="/exclamation.svg"
+                alt="exclamation mark"
+                width={24}
+                height={26}
+              />
+              <p className="text-white font-regular text-base leading-[130%]">
+                Следуя плану на 3 месяца и более, люди получают в 2 раза лучший
+                результат, чем за 1 месяц
+              </p>
+            </div>
+
+            {/* Privacy Policy Checkbox */}
+            <div className="flex items-center justify-start gap-3 mt-[30px]">
+              <button
+                onClick={() => setAgreedToPolicy(!agreedToPolicy)}
+                className={`w-8 h-8 border-2 border-[#606566] rounded flex items-center justify-center cursor-pointer transition-colors duration-500 ${
+                  shakePolicy ? "bg-[#FD5656]" : "bg-transparent"
+                }`}
+              >
+                {agreedToPolicy && (
+                  <Image
+                    src="/checkbox.svg"
+                    alt="checkbox"
+                    width={20.36}
+                    height={14.55}
+                  />
+                )}
+              </button>
+              <p className="text-[#CDCDCD] text-base leading-[110%] max-w-[605px]">
+                Я согласен с{" "}
+                <span className="underline cursor-pointer hover:text-white transition-colors">
+                  офертой рекуррентных платежей
+                </span>{" "}
+                и{" "}
+                <span className="underline cursor-pointer hover:text-white transition-colors">
+                  Политикой конфиденциальности
+                </span>
+              </p>
+            </div>
+
+            {/* Buy Button */}
+            <button
+              onClick={() => { handleBuyClick(); }}
+              className="w-[352px] px-[60px] py-5 rounded-[20px] text-[#191E1F] font-bold text-lg mt-4
+              bg-[var(--accent)] transition-opacity duration-200 ease-in-out cursor-pointer active:opacity-70"
+            >
+              Купить
+            </button>
+            
+            {/* Legal Text */}
+            <p className="text-[#9B9B9B] text-sm leading-[120%] font-regular mt-[14px]">
+              Нажимая кнопку «Купить», Пользователь соглашается на разовое списание денежных средств для получения 
+              пожизненного доступа к приложению. Пользователь соглашается, что данные кредитной/дебетовой 
+              карты будут сохранены для осуществления покупок дополнительных услуг сервиса в случае желания пользователя.
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Guarantee Section */}
+        <div className="mt-[66px] border border-[#484D4E] rounded-[30px] p-5 max-w-[1216px] mx-auto">
+          <div className="inline-flex px-[30px] py-4 border border-[#81FE95] bg-[#2D3233] rounded-[30px] mb-[30px]">
+            <span className="text-[#81FE95] text-[28px] font-medium leading-[120%]">
+              гарантия возврата 30 дней
+            </span>
+          </div>
+          <p className="text-[#DCDCDC] text-2xl leading-[130%] font-regular">
+            Мы уверены, что наш план сработает для тебя и ты увидишь видимые результаты уже через 4 недели! Мы даже готовы полностью вернуть твои деньги в течение 30 дней с момента покупки, если ты не получишь видимых результатов.
+          </p>
+        </div>
+      </div>
+    </main>
   );
 }
