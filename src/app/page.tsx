@@ -50,23 +50,33 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen font-[Montserrat]">
+    <main className="flex flex-col min-h-screen font-[Montserrat] items-center">
       <Timer onTimeEnd={() => setExpired(true)} />
-      <div className="mx-auto pt-[50px] pb-[150px]">
-        <h1 className="text-[40px] font-bold leading-[110%] text-white mb-[110px]">
+      <div className="py-[20px] sm:pt-[30px] xl:pt-[50px] xs:pb-[30px] sm:pb-[50px] pb-[150px] mx-[16px] sm:mx-[36px] xl:mx-[50px]">
+        <h1 className="font-bold leading-[110%] text-white
+            text-[22px] xs:text-[24px] sm:text-[30px] xl:text-[40px]  
+            mb-[22px] xs:mb-[20px] sm:mb-[40px] xl:mb-[110px]">
           Выбери подходящий для себя{" "}
           <span className="[color:var(--accent)]">тариф</span>
         </h1>
 
-        <div className="flex flex-row gap-[82px] items-center justify-between max-w-[1216px]">
+        <div className="flex flex-col lg:flex-row gap-0 lg:gap-[82px] items-center justify-between max-w-[1216px]">
           {/* Person */}
-          <div>
-            <Image src="/person.png" alt="man" width={380} height={767} />
-          </div>
+            <div className="w-[200px] xs:w-[250px] lg:min-w-[300px] relative">
+              <Image src="/person.png" alt="man" width={380} height={767} />
+              
+              {/* Gradient overlay */}
+              <div
+                className="absolute bottom-0 left-0 w-full h-[80px]"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(35, 40, 41, 0) 0%, #232829 100%)',
+                }}
+              />
+            </div>
 
           <div className="flex flex-col max-w-[748px]">
             {/* Tariffs */}
-            <div className="flex flex-col gap-[14px]">
+            <div className="flex flex-col gap-[6px] xs:gap-[6px] sm:gap-[14px]">
               {/* Accent card */}
               {accent && (
                 <TariffCard
@@ -81,7 +91,7 @@ export default function Home() {
               )}
 
               {/* Other cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-[14px]">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-[6px] xs:gap-[6px] sm:gap-[14px]">
                 {others.map((tariff, index) => (
                   <TariffCard
                     key={index}
@@ -96,37 +106,46 @@ export default function Home() {
             </div>
 
             {/* Attention */}
-            <div className="bg-[#2D3233] rounded-[20px] px-5 py-[18px] flex items-start gap-2 max-w-[499px] mt-5">
+            <div className="bg-[#2D3233] flex items-start 
+                gap-[6px] sm:gap-[8px] 
+                rounded-[16px] xs:rounded-[20px] 
+                pl-[12px] pr-[20px] sm:px-5 py-[14px] sm:py-[18px] 
+                w-full lg:max-w-[499px] 
+                mt-[10px] xs:mt-[12px] sm:mt-[20px]">
               <Image
                 src="/exclamation.svg"
                 alt="exclamation mark"
                 width={24}
                 height={26}
               />
-              <p className="text-white font-regular text-base leading-[130%]">
+              <p className="text-white font-regular leading-[130%] text-xs sm:text-base ">
                 Следуя плану на 3 месяца и более, люди получают в 2 раза лучший
                 результат, чем за 1 месяц
               </p>
             </div>
 
             {/* Privacy Policy Checkbox */}
-            <div className="flex items-center justify-start gap-3 mt-[30px]">
+            <div className="flex items-center justify-start gap-[10px] xs:gap-[12px] mt-[16px] xs:mt-[24px] sm:mt-[30px]">
               <button
                 onClick={() => setAgreedToPolicy(!agreedToPolicy)}
-                className={`w-8 h-8 border-2 border-[#606566] rounded flex items-center justify-center cursor-pointer transition-colors duration-500 ${
+                className={`border-2 border-[#606566]  flex items-center justify-center cursor-pointer transition-colors duration-500
+                  w-[30px] h-[30px] sm:w-[32px] sm:h-[32px] min-w-[30px] sm:min-w-[32px] rounded ${
                   shakePolicy ? "bg-[#FD5656]" : "bg-transparent"
                 }`}
               >
                 {agreedToPolicy && (
-                  <Image
-                    src="/checkbox.svg"
-                    alt="checkbox"
-                    width={20.36}
-                    height={14.55}
-                  />
+                  <div className="w-[19.09px] h-[13.64] sm:w-[20.36px] sm:h-[14.55px]">
+                    <Image
+                      src="/checkbox.svg"
+                      alt="checkbox"
+                      width={20.36}   // базовое значение, оно станет «максимальным» для layout="responsive"
+                      height={14.55}
+                      className="w-full h-auto"
+                    />
+                  </div>
                 )}
               </button>
-              <p className="text-[#CDCDCD] text-base leading-[110%] max-w-[605px]">
+              <p className="text-[#CDCDCD] text-xs sm:text-base leading-[120%] sm:leading-[110%] max-w-[605px]">
                 Я согласен с{" "}
                 <span className="underline cursor-pointer hover:text-white transition-colors">
                   офертой рекуррентных платежей
@@ -141,14 +160,16 @@ export default function Home() {
             {/* Buy Button */}
             <button
               onClick={() => { handleBuyClick(); }}
-              className="w-[352px] px-[60px] py-5 rounded-[20px] text-[#191E1F] font-bold text-lg mt-4
+              className="w-full sm:w-[352px] px-[60px] py-4 xs:py-5 rounded-[20px]
+              text-[#191E1F] font-bold text-lg leading-[130%] mt-4 xs:mt-5 sm:mt-4
               bg-[var(--accent)] transition-opacity duration-200 ease-in-out cursor-pointer active:opacity-70"
             >
               Купить
             </button>
             
             {/* Legal Text */}
-            <p className="text-[#9B9B9B] text-sm leading-[120%] font-regular mt-[14px]">
+            <p className="text-[#9B9B9B] leading-[120%] font-regular
+                text-[10px] sm:text-[14px] mt-[10px] xs:mt-[20px] sm:mt-[14px]">
               Нажимая кнопку «Купить», Пользователь соглашается на разовое списание денежных средств для получения 
               пожизненного доступа к приложению. Пользователь соглашается, что данные кредитной/дебетовой 
               карты будут сохранены для осуществления покупок дополнительных услуг сервиса в случае желания пользователя.
@@ -157,14 +178,20 @@ export default function Home() {
         </div>
 
         {/* Guarantee Section */}
-        <div className="mt-[66px] border border-[#484D4E] rounded-[30px] p-5 max-w-[1216px] mx-auto">
-          <div className="inline-flex px-[30px] py-4 border border-[#81FE95] bg-[#2D3233] rounded-[30px] mb-[30px]">
-            <span className="text-[#81FE95] text-[28px] font-medium leading-[120%]">
+        <div className="border border-[#484D4E] max-w-[1216px] mx-auto
+            mt-[22px] xs:mt-[24px] sm:mt-[36px] xl:mt-[66px]  
+            rounded-[20px] sm:rounded-[30px] p-3 sm:p-5">
+          <div className="inline-flex border border-[#81FE95] bg-[#2D3233] rounded-[30px]
+              px-[18px] sm:px-[24px] xl:px-[30px] pt-[10px] pb-[12px] sm:py-[14px] xl:py-[16px] mb-[10px] sm:mb-[20px] xl:mb-[30px]">
+            <span className="text-[#81FE95] font-medium leading-[120%]
+            text-[16px] xs:text-[18px] sm:text-[24px] xl:text-[28px]">
               гарантия возврата 30 дней
             </span>
           </div>
-          <p className="text-[#DCDCDC] text-2xl leading-[130%] font-regular">
-            Мы уверены, что наш план сработает для тебя и ты увидишь видимые результаты уже через 4 недели! Мы даже готовы полностью вернуть твои деньги в течение 30 дней с момента покупки, если ты не получишь видимых результатов.
+          <p className="text-[#DCDCDC] leading-[130%] font-regular 
+              text-[13px] xs:text-[14px] sm:text-[20px] xl:text-[24px] ">
+            Мы уверены, что наш план сработает для тебя и ты увидишь видимые результаты уже через 4 недели! 
+            Мы даже готовы полностью вернуть твои деньги в течение 30 дней с момента покупки, если ты не получишь видимых результатов.
           </p>
         </div>
       </div>

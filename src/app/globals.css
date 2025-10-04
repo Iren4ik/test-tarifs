@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+
+@theme {
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 640px;
+  --breakpoint-xl: 1280px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --background: #232829;
   --foreground: #ffffff;
