@@ -68,7 +68,11 @@ export default function Home() {
 
         <div className="flex flex-col lg:flex-row gap-0 lg:gap-[82px] items-center justify-between max-w-[1216px]">
           {/* Person */}
-            <div className="relative h-[200px] min-w-[99px] xs:h-[250px] xs:min-w-[124px] sm:h-[500px] sm:min-w-[248px] lg:h-[767px] xl:min-w-[380px]">
+            <div className="relative 
+              h-[200px] min-w-[99px] 
+              xs:h-[250px] xs:min-w-[124px] 
+              sm:h-[500px] sm:min-w-[248px] 
+              xl:h-[767px] xl:min-w-[380px]">
               <Image 
                 src="/images/person.png" 
                 alt="man" 

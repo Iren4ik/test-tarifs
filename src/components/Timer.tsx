@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Timer({ onTimeEnd }: { onTimeEnd?: () => void }) {
-  const [timeLeft, setTimeLeft] = useState(1200); // 120 секунд
+  const [timeLeft, setTimeLeft] = useState(120); // 120 секунд
 
   useEffect(() => {
     if (timeLeft <= 0) {
