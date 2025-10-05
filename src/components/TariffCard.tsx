@@ -91,7 +91,7 @@ export default function TariffCard({
           >
             {/* Price */}
             <div className="flex flex-col items-start sm:items-center justify-between 
-              w-min min-w-[107px] xs:min-w-[121px] sm:min-w-[178px] self-center">
+              w-min min-w-[107px] xs:min-w-[121px] md:min-w-[178px] self-center">
               <h3
                 className={`font-medium text-white leading-[120%]
                   text-[16px] xs:text-[18px] sm:text-[20px] xl:text-[26px]  
@@ -124,8 +124,8 @@ export default function TariffCard({
             {/* Description */}
             <p className={`font-regular text-white xl:text-base  ${
               size === "large" ? 
-                "text-xs leading-[110%]" : 
-                "text-sm leading-[130%] xl:self-start"
+                "text-xs sm:text-sm leading-[110%] xs:leading-[120%] sm:leading-[130%]" : 
+                "text-sm leading-[130%] sm:self-start"
               }`} >
               {text}
             </p>

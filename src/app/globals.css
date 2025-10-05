@@ -3,8 +3,6 @@
 
 @theme {
   --breakpoint-xs: 375px;
-  /* --breakpoint-sm: 640px; */
-  /* --breakpoint-xl: 1280px; */
 }
 
 @font-face {

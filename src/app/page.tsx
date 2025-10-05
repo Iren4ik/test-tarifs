@@ -52,9 +52,10 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen font-[Montserrat] items-center">
       <Timer onTimeEnd={() => setExpired(true)} />
-      <div className="mx-[16px] sm:mx-[36px] xl:mx-[50px]
-        pt-[22px] xs:pt-[21px] sm:pt-[30px] xl:pt-[50px] 
-        pb-[20px] xs:pb-[30px] sm:pb-[50px] xl:pb-[150px] 
+      <section aria-label="Выбор тарифа"
+        className="mx-[16px] sm:mx-[36px] xl:mx-[50px]
+          pt-[22px] xs:pt-[21px] sm:pt-[30px] xl:pt-[50px] 
+          pb-[20px] xs:pb-[30px] sm:pb-[50px] xl:pb-[150px] 
       ">
         <h1 className="font-bold leading-[110%] text-white 
           text-[22px] xs:text-[24px] sm:text-[30px] xl:text-[40px] 
@@ -188,7 +189,8 @@ export default function Home() {
         </div>
 
         {/* Guarantee Section */}
-        <div className="border border-[#484D4E] max-w-[748px] lg:max-w-[1216px] mx-auto
+        <section aria-label="Гарантия возврата"
+          className="border border-[#484D4E] max-w-[748px] lg:max-w-[1216px] mx-auto
           mt-[20px] xs:mt-[22px] sm:mt-[36px] xl:mt-[66px]  
           rounded-[20px] sm:rounded-[30px] p-[11px] sm:p-5">
           <div className="inline-flex items-center justify-center border border-[#81FE95] bg-[#2D3233] rounded-[30px] 
@@ -204,8 +206,8 @@ export default function Home() {
             Мы уверены, что наш план сработает для тебя и ты увидишь видимые результаты уже через 4 недели! 
             Мы даже готовы полностью вернуть твои деньги в течение 30 дней с момента покупки, если ты не получишь видимых результатов.
           </p>
-        </div>
-      </div>
+        </section>
+      </section>
     </main>
   );
 }

@@ -15,8 +15,8 @@ const geistMono = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "Тарифы на спорт",
-  description: "Тестовое задание: страница тарифов с таймером и анимацией",
+  title: "Выбор тарифа - Fit Hub",
+  description: "Выберите подходящий тариф для фитнеса и начните тренировки!",
 };
 
 export default function RootLayout({
