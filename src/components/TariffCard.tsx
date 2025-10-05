@@ -36,9 +36,9 @@ export default function TariffCard({
   `;
 
   const largeStyles =
-    "w-full flex items-center justify-center sm:h-[150px] max-h-[190px] py-[18px] pr-[18px] pl-[18px] xs:pr-[30px] sm:pt-[34px] sm:pb-[30px] sm:pl-[122px] sm:pr-[80px]";
+    "w-full flex items-center justify-center sm:h-[150px] max-h-[190px] py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:pt-[34px] sm:pb-[30px] sm:pl-[122px] sm:pr-[80px]";
   const normalStyles =
-    "flex flex-col items-center sm:h-[270px] xl:h-[335px] sm:px-[18px] py-[18px] pr-[18px] pl-[18px] xs:pr-[30px] sm:pt-[56px] xl:pt-[70px] sm:pb-[23px]";
+    "flex flex-col items-center sm:h-[270px] xl:h-[335px]  py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:px-[18px] sm:pt-[56px] sm:pb-[23px] xl:pt-[70px] ";
 
   const cardClass = size === "large" ? largeStyles : normalStyles;
   const selectedClass = selected ? "border-[var(--accent)]" : "border-[#484D4E]";
@@ -68,8 +68,6 @@ export default function TariffCard({
         className={`${base} ${cardClass} ${selectedClass}`}
         aria-label={`Тариф ${period}`}
       >
-
-
         {/* Hit */}
         {is_best && (
           <span className="absolute text-[var(--accent)] font-medium z-20 leading-[130%] tracking-[3%]
