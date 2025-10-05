@@ -52,9 +52,13 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen font-[Montserrat] items-center">
       <Timer onTimeEnd={() => setExpired(true)} />
-      <div className="py-[22px] xs:py-[21px] sm:pt-[30px] xl:pt-[50px] xs:pb-[30px] sm:pb-[50px] pb-[150px] mx-[16px] sm:mx-[36px] xl:mx-[50px]">
-        <h1 className="font-bold leading-[110%] text-white
-          text-[22px] xs:text-[24px] sm:text-[30px] xl:text-[40px]  
+      <div className="mx-[16px] sm:mx-[36px] xl:mx-[50px]
+        pt-[22px] xs:pt-[21px] sm:pt-[30px] xl:pt-[50px] 
+        pb-[20px] xs:pb-[30px] sm:pb-[50px] xl:pb-[150px] 
+      ">
+        <h1 className="font-bold leading-[110%] text-white 
+          text-[22px] xs:text-[24px] sm:text-[30px] xl:text-[40px] 
+          tracking-[0.22px] xs:tracking-[0.24px] sm:tracking-[0.3px] xl:tracking-[0.4px]
           mb-[22px] xs:mb-[16px] sm:mb-[40px] xl:mb-[110px]
           xs:max-w-[312px] sm:max-w-none">
           Выбери подходящий для себя{" "}
@@ -63,7 +67,7 @@ export default function Home() {
 
         <div className="flex flex-col lg:flex-row gap-0 lg:gap-[82px] items-center justify-between max-w-[1216px]">
           {/* Person */}
-            <div className="relative h-[200px] min-w-[99px] xs:h-[250px] xs:min-w-[124px] sm:h-[500px] lg:h-[767px]">
+            <div className="relative h-[200px] min-w-[99px] xs:h-[250px] xs:min-w-[124px] sm:h-[500px] sm:min-w-[248px] lg:h-[767px] xl:min-w-[380px]">
               <Image 
                 src="/images/person.png" 
                 alt="man" 
@@ -124,7 +128,7 @@ export default function Home() {
                 width={24}
                 height={26}
               />
-              <p className="text-white font-regular leading-[130%] text-xs sm:text-base xs:max-w-[256px]">
+              <p className="text-white font-regular leading-[130%] text-xs sm:text-base xs:max-w-[256px] sm:max-w-none">
                 Следуя плану на 3 месяца и более, люди получают в 2 раза лучший
                 результат, чем за 1 месяц
               </p>
@@ -166,8 +170,8 @@ export default function Home() {
             {/* Buy Button */}
             <button
               onClick={() => { handleBuyClick(); }}
-              className="w-full sm:w-[352px] px-[60px] py-4 xs:py-5 rounded-[20px]
-              text-[#191E1F] font-bold text-lg leading-[130%] mt-4 xs:mt-5 sm:mt-4
+              className="w-full md:w-[352px] px-[60px] py-4 xs:py-5 rounded-[20px] 
+              text-[#191E1F] font-bold text-lg leading-[130%] mt-4 xs:mt-5 sm:mt-4 xl:mt-[18px]
                 bg-[var(--accent)] transition-opacity duration-200 ease-in-out cursor-pointer active:opacity-70"
             >
               Купить
@@ -175,7 +179,7 @@ export default function Home() {
             
             {/* Legal Text */}
             <p className="text-[#9B9B9B] leading-[120%] font-regular
-              text-[10px] sm:text-[14px] mt-[10px] xs:mt-[22px] sm:mt-[14px]">
+              text-[10px] sm:text-[14px] mt-[10px] xs:mt-[22px] sm:mt-[16px]">
               Нажимая кнопку «Купить», Пользователь соглашается на разовое списание денежных средств для получения 
               пожизненного доступа к приложению. Пользователь соглашается, что данные кредитной/дебетовой 
               карты будут сохранены для осуществления покупок дополнительных услуг сервиса в случае желания пользователя.
@@ -184,11 +188,12 @@ export default function Home() {
         </div>
 
         {/* Guarantee Section */}
-        <div className="border border-[#484D4E] max-w-[1216px] mx-auto
+        <div className="border border-[#484D4E] max-w-[748px] lg:max-w-[1216px] mx-auto
           mt-[20px] xs:mt-[22px] sm:mt-[36px] xl:mt-[66px]  
           rounded-[20px] sm:rounded-[30px] p-[11px] sm:p-5">
-          <div className="inline-flex border border-[#81FE95] bg-[#2D3233] rounded-[30px] w-full xs:max-w-[294px]
-            px-[16px] sm:px-[24px] xl:px-[30px] pt-[10px] pb-[12px] sm:py-[14px] xl:py-[16px] mb-[10px] sm:mb-[20px] xl:mb-[30px]">
+          <div className="inline-flex items-center justify-center border border-[#81FE95] bg-[#2D3233] rounded-[30px] 
+            w-full xs:max-w-[294px] sm:max-w-[400px] xl:max-w-[461px]
+            px-[16px] sm:px-[24px] xl:px-[28px] pt-[10px] pb-[12px] sm:py-[14px] xl:py-[16px] mb-[10px] sm:mb-[20px] xl:mb-[30px]">
             <span className="text-[#81FE95] font-medium leading-[120%]
               text-[16px] xs:text-[18px] sm:text-[24px] xl:text-[28px]">
               гарантия возврата 30 дней

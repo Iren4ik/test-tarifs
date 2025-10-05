@@ -36,9 +36,11 @@ export default function TariffCard({
   `;
 
   const largeStyles =
-    "w-full flex items-center justify-center sm:h-[150px] max-h-[190px] py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:pt-[34px] sm:pb-[30px] sm:pl-[122px] sm:pr-[80px]";
+    "w-full flex items-center justify-center sm:h-[150px] lg:h-[190px] max-h-[190px]" +
+    "py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:pt-[34px] sm:pb-[30px] sm:pl-[122px] sm:pr-[80px]";
   const normalStyles =
-    "flex flex-col items-center sm:h-[270px] xl:h-[335px]  py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:px-[18px] sm:pt-[56px] sm:pb-[23px] xl:pt-[70px] ";
+    "flex flex-col items-center justify-center xl:justify-start sm:h-[270px] xl:h-[335px] xl:min-h-[335px]" + 
+    "py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:px-[18px] sm:pt-[56px] sm:pb-[23px] xl:pt-[70px] xl:px-[17px]";
 
   const cardClass = size === "large" ? largeStyles : normalStyles;
   const selectedClass = selected ? "border-[var(--accent)]" : "border-[#484D4E]";
@@ -56,7 +58,7 @@ export default function TariffCard({
             "right-[28px] xs:right-[30px]  "}  
         `}>
           <span className="text-white font-[Gilroy] font-medium leading-[130%] 
-            text-[13px] xs:text-base sm:text-lg
+            text-[13px] xs:text-base sm:text-lg xl:text-[22px]
             px-[6px] py-[3px] sm:px-2 sm:py-[5px]  
           ">
             -{discount}%
@@ -81,14 +83,15 @@ export default function TariffCard({
         {/* Content */}
         <div className="relative z-10 flex w-full">
           <div
-            className={`flex flex-row ${
+            className={`flex flex-row xl:w-full ${
               size === "large"
                 ? "justify-center items-center gap-[30px] xs:gap-[50px] sm:gap-[40px]"
                 : "justify-center items-center gap-[30px] xs:gap-[50px] sm:flex-col"
             }`}
           >
             {/* Price */}
-            <div className="flex flex-col items-start sm:items-center justify-between w-min min-w-[107px] xs:min-w-[121px] self-center">
+            <div className="flex flex-col items-start sm:items-center justify-between 
+              w-min min-w-[107px] xs:min-w-[121px] sm:min-w-[178px] self-center">
               <h3
                 className={`font-medium text-white leading-[120%]
                   text-[16px] xs:text-[18px] sm:text-[20px] xl:text-[26px]  
@@ -119,10 +122,10 @@ export default function TariffCard({
             </div>
 
             {/* Description */}
-            <p className={`font-regular text-white xl:text-base ${
-                size === "large" ? 
+            <p className={`font-regular text-white xl:text-base  ${
+              size === "large" ? 
                 "text-xs leading-[110%]" : 
-                "text-sm leading-[130%]"
+                "text-sm leading-[130%] xl:self-start"
               }`} >
               {text}
             </p>
