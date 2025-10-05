@@ -29,17 +29,18 @@ export default function TariffCard({
 
   const base = `
     relative border-2 cursor-pointer overflow-hidden transition-all duration-300 
-    min-h-[118px] h-[118px] xs:h-[131px]
     rounded-[20px] sm:rounded-[30px] xl:rounded-[34px] 
     before:absolute before:inset-0 before:bg-[#313637] before:transition-opacity before:duration-300
     hover:before:opacity-50
   `;
 
   const largeStyles =
-    "w-full flex items-center justify-center sm:h-[150px] lg:h-[190px] max-h-[190px]" +
-    "py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:pt-[34px] sm:pb-[30px] sm:pl-[122px] sm:pr-[80px]";
+    "w-full flex items-center justify-center " +
+    "min-h-[118px] sm:h-[150px] lg:h-[190px] max-h-[190px] " +
+    "py-[18px] pb-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:pt-[34px] sm:pb-[30px] sm:pl-[122px] sm:pr-[80px]";
   const normalStyles =
-    "flex flex-col items-center justify-center xl:justify-start sm:h-[270px] xl:h-[335px] xl:min-h-[335px]" + 
+    "flex flex-col items-center justify-center xl:justify-start " +
+    "min-h-[118px] xs:min-h-[131px] sm:h-[270px] xl:h-[335px] xl:min-h-[335px] " + 
     "py-[18px] pr-[18px] pl-[18px] xs:pl-[28px] sm:px-[18px] sm:pt-[56px] sm:pb-[23px] xl:pt-[70px] xl:px-[17px]";
 
   const cardClass = size === "large" ? largeStyles : normalStyles;
@@ -122,11 +123,10 @@ export default function TariffCard({
             </div>
 
             {/* Description */}
-            <p className={`font-regular text-white xl:text-base  ${
-              size === "large" ? 
-                "text-xs sm:text-sm leading-[110%] xs:leading-[120%] sm:leading-[130%]" : 
-                "text-sm leading-[130%] sm:self-start"
-              }`} >
+            <p className={`font-regular text-white leading-[130%]
+              text-sm sm:text-base 
+              ${size === "large" ? "py-[6px] xs:py-[10px] sm:py-0" : ""
+              }`}>
               {text}
             </p>
           </div>

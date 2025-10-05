@@ -133,14 +133,14 @@ export default function Home() {
                 width={24}
                 height={26}
               />
-              <p className="text-white font-regular leading-[130%] text-xs sm:text-base xs:max-w-[256px] sm:max-w-none">
+              <p className="text-white font-regular leading-[130%] text-xs sm:text-base">
                 Следуя плану на 3 месяца и более, люди получают в 2 раза лучший
                 результат, чем за 1 месяц
               </p>
             </div>
 
             {/* Privacy Policy Checkbox */}
-            <div className="flex items-start justify-start gap-[10px] xs:gap-[12px] mt-[16px] xs:mt-[24px] sm:mt-[30px]">
+            <div className="flex items-start xs:items-center justify-start gap-[10px] xs:gap-[12px] mt-[16px] xs:mt-[24px] sm:mt-[30px]">
               <button
                 onClick={() => setAgreedToPolicy(!agreedToPolicy)}
                 className={`border-2 border-[#606566]  flex items-center justify-center cursor-pointer transition-colors duration-500
@@ -160,7 +160,7 @@ export default function Home() {
                   </div>
                 )}
               </button>
-              <p className="text-[#CDCDCD] text-xs sm:text-base leading-[120%] sm:leading-[110%] max-w-[605px]">
+              <p className="text-[#CDCDCD] text-xs sm:text-base leading-[120%] sm:leading-[110%] xl:max-w-[605px]">
                 Я согласен с{" "}
                 <span className="underline cursor-pointer hover:text-white transition-colors">
                   офертой рекуррентных платежей
