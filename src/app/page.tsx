@@ -52,18 +52,23 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen font-[Montserrat] items-center">
       <Timer onTimeEnd={() => setExpired(true)} />
-      <div className="py-[20px] sm:pt-[30px] xl:pt-[50px] xs:pb-[30px] sm:pb-[50px] pb-[150px] mx-[16px] sm:mx-[36px] xl:mx-[50px]">
+      <div className="py-[22px] sm:pt-[30px] xl:pt-[50px] xs:pb-[30px] sm:pb-[50px] pb-[150px] mx-[16px] sm:mx-[36px] xl:mx-[50px]">
         <h1 className="font-bold leading-[110%] text-white
-            text-[22px] xs:text-[24px] sm:text-[30px] xl:text-[40px]  
-            mb-[22px] xs:mb-[20px] sm:mb-[40px] xl:mb-[110px]">
+          text-[22px] xs:text-[24px] sm:text-[30px] xl:text-[40px]  
+          mb-[22px] xs:mb-[20px] sm:mb-[40px] xl:mb-[110px]">
           Выбери подходящий для себя{" "}
           <span className="[color:var(--accent)]">тариф</span>
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-0 lg:gap-[82px] items-center justify-between max-w-[1216px]">
           {/* Person */}
-            <div className="w-[200px] xs:w-[250px] lg:min-w-[300px] relative">
-              <Image src="/person.png" alt="man" width={380} height={767} />
+            <div className="relative h-[200px] min-w-[99px] xs:h-[250px] sm:h-[500px] lg:h-[767px]">
+              <Image 
+                src="/images/person.png" 
+                alt="man" 
+                fill
+                className="object-contain object-bottom"
+              />
               
               {/* Gradient overlay */}
               <div
@@ -107,13 +112,13 @@ export default function Home() {
 
             {/* Attention */}
             <div className="bg-[#2D3233] flex items-start 
-                gap-[6px] sm:gap-[8px] 
-                rounded-[16px] xs:rounded-[20px] 
-                pl-[12px] pr-[20px] sm:px-5 py-[14px] sm:py-[18px] 
-                w-full lg:max-w-[499px] 
-                mt-[10px] xs:mt-[12px] sm:mt-[20px]">
+              gap-[4px] sm:gap-[8px] 
+              rounded-[16px] xs:rounded-[20px] 
+              pl-[12px] pr-[20px] sm:px-5 py-[14px] sm:py-[18px] 
+              w-full lg:max-w-[499px] 
+              mt-[10px] xs:mt-[12px] sm:mt-[20px]">
               <Image
-                src="/exclamation.svg"
+                src="/images/exclamation.svg"
                 alt="exclamation mark"
                 width={24}
                 height={26}
@@ -125,7 +130,7 @@ export default function Home() {
             </div>
 
             {/* Privacy Policy Checkbox */}
-            <div className="flex items-center justify-start gap-[10px] xs:gap-[12px] mt-[16px] xs:mt-[24px] sm:mt-[30px]">
+            <div className="flex items-start justify-start gap-[10px] xs:gap-[12px] mt-[16px] xs:mt-[24px] sm:mt-[30px]">
               <button
                 onClick={() => setAgreedToPolicy(!agreedToPolicy)}
                 className={`border-2 border-[#606566]  flex items-center justify-center cursor-pointer transition-colors duration-500
@@ -136,9 +141,9 @@ export default function Home() {
                 {agreedToPolicy && (
                   <div className="w-[19.09px] h-[13.64] sm:w-[20.36px] sm:h-[14.55px]">
                     <Image
-                      src="/checkbox.svg"
+                      src="/images/checkbox.svg"
                       alt="checkbox"
-                      width={20.36}   // базовое значение, оно станет «максимальным» для layout="responsive"
+                      width={20.36}
                       height={14.55}
                       className="w-full h-auto"
                     />
@@ -162,14 +167,14 @@ export default function Home() {
               onClick={() => { handleBuyClick(); }}
               className="w-full sm:w-[352px] px-[60px] py-4 xs:py-5 rounded-[20px]
               text-[#191E1F] font-bold text-lg leading-[130%] mt-4 xs:mt-5 sm:mt-4
-              bg-[var(--accent)] transition-opacity duration-200 ease-in-out cursor-pointer active:opacity-70"
+                bg-[var(--accent)] transition-opacity duration-200 ease-in-out cursor-pointer active:opacity-70"
             >
               Купить
             </button>
             
             {/* Legal Text */}
             <p className="text-[#9B9B9B] leading-[120%] font-regular
-                text-[10px] sm:text-[14px] mt-[10px] xs:mt-[20px] sm:mt-[14px]">
+              text-[10px] sm:text-[14px] mt-[10px] xs:mt-[20px] sm:mt-[14px]">
               Нажимая кнопку «Купить», Пользователь соглашается на разовое списание денежных средств для получения 
               пожизненного доступа к приложению. Пользователь соглашается, что данные кредитной/дебетовой 
               карты будут сохранены для осуществления покупок дополнительных услуг сервиса в случае желания пользователя.
@@ -179,17 +184,17 @@ export default function Home() {
 
         {/* Guarantee Section */}
         <div className="border border-[#484D4E] max-w-[1216px] mx-auto
-            mt-[22px] xs:mt-[24px] sm:mt-[36px] xl:mt-[66px]  
-            rounded-[20px] sm:rounded-[30px] p-3 sm:p-5">
-          <div className="inline-flex border border-[#81FE95] bg-[#2D3233] rounded-[30px]
-              px-[18px] sm:px-[24px] xl:px-[30px] pt-[10px] pb-[12px] sm:py-[14px] xl:py-[16px] mb-[10px] sm:mb-[20px] xl:mb-[30px]">
+          mt-[20px] xs:mt-[24px] sm:mt-[36px] xl:mt-[66px]  
+          rounded-[20px] sm:rounded-[30px] p-[11px] sm:p-5">
+          <div className="inline-flex border border-[#81FE95] bg-[#2D3233] rounded-[30px] w-full
+            px-[16px] sm:px-[24px] xl:px-[30px] pt-[10px] pb-[12px] sm:py-[14px] xl:py-[16px] mb-[10px] sm:mb-[20px] xl:mb-[30px]">
             <span className="text-[#81FE95] font-medium leading-[120%]
-            text-[16px] xs:text-[18px] sm:text-[24px] xl:text-[28px]">
+              text-[16px] xs:text-[18px] sm:text-[24px] xl:text-[28px]">
               гарантия возврата 30 дней
             </span>
           </div>
           <p className="text-[#DCDCDC] leading-[130%] font-regular 
-              text-[13px] xs:text-[14px] sm:text-[20px] xl:text-[24px] ">
+            text-[13px] xs:text-[14px] sm:text-[20px] xl:text-[24px] ">
             Мы уверены, что наш план сработает для тебя и ты увидишь видимые результаты уже через 4 недели! 
             Мы даже готовы полностью вернуть твои деньги в течение 30 дней с момента покупки, если ты не получишь видимых результатов.
           </p>
